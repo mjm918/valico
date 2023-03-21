@@ -34,9 +34,9 @@ impl Coercer for StringCoercer {
     fn coerce(&self, val: &mut Value, path: &str) -> CoercerResult<Option<Value>> {
         if val.is_string() {
             Ok(None)
-        } else if val.is_number() {
+        } /*else if val.is_number() {
             Ok(Some(to_value(to_string(&val).unwrap()).unwrap()))
-        } else {
+        }*/ else {
             Err(vec![Box::new(errors::WrongType {
                 path: path.to_string(),
                 detail: "Can't coerce value to string".to_string(),
@@ -55,13 +55,13 @@ impl Coercer for I64Coercer {
     fn coerce(&self, val: &mut Value, path: &str) -> CoercerResult<Option<Value>> {
         if val.is_i64() {
             Ok(None)
-        } else if val.is_u64() {
+        } /*else if val.is_u64() {
             let val = val.as_u64().unwrap();
             Ok(Some(to_value(val as i64).unwrap()))
         } else if val.is_f64() {
             let val = val.as_f64().unwrap();
             Ok(Some(to_value(val as i64).unwrap()))
-        } else if val.is_string() {
+        }*/ else if val.is_string() {
             let val = val.as_str().unwrap();
             let converted: Option<i64> = val.parse().ok();
             match converted {
@@ -90,13 +90,13 @@ impl Coercer for U64Coercer {
     fn coerce(&self, val: &mut Value, path: &str) -> CoercerResult<Option<Value>> {
         if val.is_u64() {
             Ok(None)
-        } else if val.is_i64() {
+        } /*else if val.is_i64() {
             let val = val.as_i64().unwrap();
             Ok(Some(to_value(val as u64).unwrap()))
         } else if val.is_f64() {
             let val = val.as_f64().unwrap();
             Ok(Some(to_value(val as u64).unwrap()))
-        } else if val.is_string() {
+        }*/ else if val.is_string() {
             let val = val.as_str().unwrap();
             let converted: Option<u64> = val.parse().ok();
             match converted {
@@ -125,13 +125,13 @@ impl Coercer for F64Coercer {
     fn coerce(&self, val: &mut Value, path: &str) -> CoercerResult<Option<Value>> {
         if val.is_f64() {
             Ok(None)
-        } else if val.is_i64() {
+        } /*else if val.is_i64() {
             let val = val.as_i64().unwrap();
             Ok(Some(to_value(val as f64).unwrap()))
         } else if val.is_u64() {
             let val = val.as_u64().unwrap();
             Ok(Some(to_value(val as f64).unwrap()))
-        } else if val.is_string() {
+        }*/ else if val.is_string() {
             let val = val.as_str().unwrap();
             let converted: Option<f64> = val.parse().ok();
             match converted {
